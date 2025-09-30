@@ -28,8 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    "swe-1-app-dev.us-east-1.elasticbeanstalk.com",
-    "www.swe-1-app-dev.us-east-1.elasticbeanstalk.com",
+    'hs5544-swe-app.us-east-1.elasticbeanstalk.com',
+    '*',
 ]
 
 
