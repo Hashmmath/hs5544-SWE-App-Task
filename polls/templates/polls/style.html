@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django Polls{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+/* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        /* Headings */
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Paragraphs */
+        p {
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        p strong {
+            color: #c33;
+            background: #fee;
+            padding: 10px 15px;
+            display: block;
+            border-left: 4px solid #f44;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        /* Lists - General */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Index Page - Poll List */
+        ul li {
+            margin-bottom: 15px;
+            transform: translateX(0);
+            transition: all 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: translateX(10px);
+        }
+
+        ul li a {
+            display: block;
+            padding: 20px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        ul li a:hover {
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Forms */
+        form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        fieldset {
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            background: #f9f9f9;
+        }
+
+        legend {
+            padding: 0 15px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        legend h1 {
+            margin: 0;
+            box-shadow: none;
+            background: transparent;
+            padding: 0;
+        }
+
+        /* Radio Inputs and Labels in Detail Page */
+        input[type="radio"] {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        label {
+            cursor: pointer;
+            font-size: 1.1em;
+            color: #333;
+            font-weight: 500;
+            display: inline-block;
+            padding: 15px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            width: calc(100% - 40px);
+        }
+
+        input[type="radio"]:hover + label,
+        label:hover {
+            background: #f0f4ff;
+            border-color: #667eea;
+            transform: scale(1.02);
+        }
+
+        /* Submit Button */
+        input[type="submit"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        input[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        /* Results Page Container */
+        .results-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .results-container h1 {
+            box-shadow: none;
+            background: transparent;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        /* Results List Items */
+        .results-container ul li {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #f0f4ff 0%, white 100%);
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease;
+            font-size: 1.2em;
+            color: #333;
+            font-weight: 600;
+            transform: translateX(0);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .results-container ul li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Links on Results Page */
+        .results-container a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #f0f4ff;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #667eea;
+            font-size: 1.1em;
+        }
+
+        .results-container a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Index Page Container */
+        .index-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .index-container h1 {
+            box-shadow: none;
+            background: transparent;
+            padding: 0;
+        }
+
+        .index-container p {
+            box-shadow: none;
+            padding: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            form, body > ul {
+                padding: 20px;
+            }
+
+            body > ul li {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
