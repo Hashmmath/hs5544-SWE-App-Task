@@ -28,4 +28,4 @@ deploy:
   env: swe-1-hs5544-app
   on:
     repo: Hashmmath/hs5544-SWE-App-Task
-    branch: master
+    branch: main
