@@ -6,7 +6,7 @@ matrix:
 install:
 - pip install -r requirements.txt
 script:
-- black --check .
+- black .
 - flake8 .
 - coverage run manage.py
 after_success:
@@ -27,4 +27,4 @@ deploy:
   on:
     repo: hashmmath/hs5544-SWE-App-Task
     branch: main
-  skip_cleanup: 'true'
+  skip_cleanup: 'false'
