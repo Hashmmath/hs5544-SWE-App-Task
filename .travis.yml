@@ -23,6 +23,7 @@ deploy:
   access_key_id: $aws_access_key
   secret_access_key: $aws_secret_access_key
   bucket: $aws_bucket_name
+  edge: true
   app: swe-1-hs5544-app
   env: swe-1-hs5544-app
   on:
