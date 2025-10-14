@@ -2,5 +2,5 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/Hashmmath/hs5544-SWE-App-Task/badge.svg?branch=main)](https://coveralls.io/github/Hashmmath/hs5544-SWE-App-Task?branch=main) 
 
-Polls Link (EB Link) : [(http://swe-1-hs5544-app.us-east-1.elasticbeanstalk.com/polls/)](http://swe-1-hs5544-app.us-east-1.elasticbeanstalk.com/polls/)
+Polls Link (EB Link) : [http://swe-1-hs5544-app.us-east-1.elasticbeanstalk.com/polls/](http://swe-1-hs5544-app.us-east-1.elasticbeanstalk.com/polls/)
 
