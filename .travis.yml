@@ -26,5 +26,5 @@ deploy:
   application: swe-1-hs5544-app
   environment: swe-1-hs5544-app
   on:
-    repo: hashmmath/hs5544-SWE-App-Task
+    repo: Hashmmath/hs5544-SWE-App-Task
     branch: master
