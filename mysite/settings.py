@@ -26,10 +26,10 @@ SECRET_KEY = "django-insecure-9h+zvh_)21p5s!q89)k@8k5b@$vrj3_54#u-qr3&9)j*h6#%pu
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'hs5544-swe-app.us-east-1.elasticbeanstalk.com',
-    '*'
+    "localhost",
+    "127.0.0.1",
+    "hs5544-swe-app.us-east-1.elasticbeanstalk.com",
+    "*",
 ]
 
 
@@ -121,8 +121,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
