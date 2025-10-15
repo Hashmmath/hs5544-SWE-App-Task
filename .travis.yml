@@ -11,7 +11,7 @@ script:
   - coverage run manage.py test
 
 after_success:
-  - coveralls
+  - coveralls --service=travis-pro
 
 env:
   global:
