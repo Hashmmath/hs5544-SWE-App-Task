@@ -27,4 +27,4 @@ deploy:
   app: swe-1-hs5544-app
   env: swe-1-hs5544-app
   on:
-    branch: master
+    all_branches: true
